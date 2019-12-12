@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,8 +16,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FireMap(),
-           
+      appBar: AppBar(
+        title: Text("Location"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (_currentPosition != null) Text(_currentAddress),
+            FlatButton(
+              child: Text("Get location"),
+              onPressed: () {
+                _getCurrentLocation();
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -50,25 +64,5 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       print(e);
     }
-  }
-}
-
-class FireMap extends StatefulWidget {
-  State createState () => FireMapState();
-}
-
-class FireMapState extends State<FireMap> {
-
-  build(context) {
-    return Stack(children: [
-
-        GoogleMap(
-          initialCameraPosition: CameraPosition(
-            target: LatLng(14.14, 16.18),
-            zoom: 10
-          )
-        )
-    
-    ]);
   }
 }
