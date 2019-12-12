@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
               Text(
                   "LAT: ${_currentPosition.latitude}, LNG: ${_currentPosition.longitude}"),
             FlatButton(
-              child: Text("Ubicame"),
+              child: Text("Get location"),
               onPressed: () {
                 _getCurrentLocation();
               },
@@ -49,5 +49,3 @@ class _HomePageState extends State<HomePage> {
     });
   }
 }
-
-
